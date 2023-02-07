@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\MusicianController;
+use App\Http\Controllers\SongController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('musicians', MusicianController::class);
+Route::resource('genres', GenreController::class);
+Route::resource('songs', SongController::class);
