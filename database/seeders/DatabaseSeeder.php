@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         Genre::truncate();
         Song::truncate();
         
-        User::factory(5)->create();
+        User::factory(1)->create();
         Musician::factory(7)->create();
         Genre::factory(8)->create();
         Song::factory(5)->create();

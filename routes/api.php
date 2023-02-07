@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MusicianController;
 use App\Http\Controllers\SongController;
@@ -21,6 +22,30 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('musicians', MusicianController::class);
-Route::resource('genres', GenreController::class);
-Route::resource('songs', SongController::class);
+Route::resource('musicians', MusicianController::class)->only(['index']);
+
+
+Route::resource('genres', GenreController::class)->only(['index']);;
+Route::resource('songs', SongController::class)->only(['index']);;
+Route::get('/songs/search/{name}', [TVShowController::class, 'search']);
+
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/profile', function (Request $request) {
+        return auth()->user();
+    });
+
+    // Route::put("presenters/{id}", [PresenterController::class, "update"]);
+    Route::resource("musicians", MusicianController::class)->only(['store', 'update','destroy']);
+    
+    // Route::put("studios/{id}", [StudioController::class, "update"]);
+    Route::resource("genres", GenreController::class)->only(['store', 'update','destroy']);
+
+    // Route::put("tvshows/{id}", [TVShowController::class, "update"]);
+    Route::resource("songs", SongController::class)->only(['store', 'update', 'show']);
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+});

@@ -40,14 +40,13 @@ class SongController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            "name" => 'bail|required|string|max:255',
-            "album" => 'bail|required|string',
-            "genre_id"=>'bail|required',
+            "name" => 'required|string|max:255',
+            "album" => 'required|string',
+            "genre_id"=>'required',
             "musician_id"=>'required'
         ]);
 
         if ($validator->fails())
-        //return response()->json($request);
             return response()->json($validator->errors());
 
         $song = Song::create([
@@ -123,6 +122,7 @@ class SongController extends Controller
     public function destroy($id)
     {
         Song::destroy($id);
+        return response()->json('Song was deleted succesfully');
     }
 
     public function search($name)
