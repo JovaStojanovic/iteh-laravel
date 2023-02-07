@@ -3,6 +3,11 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Genre;
+use App\Models\Musician;
+use App\Models\Song;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +25,14 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        User::truncate();
+        Musician::truncate();
+        Genre::truncate();
+        Song::truncate();
+        
+        User::factory(5)->create();
+        Musician::factory(7)->create();
+        Genre::factory(8)->create();
+        Song::factory(5)->create();
     }
 }
