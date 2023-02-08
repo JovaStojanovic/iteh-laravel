@@ -89,8 +89,7 @@ class GenreController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            "name" => 'required|string|max:255|unique:studios',
-            
+            "name" => 'required|string|max:255|unique:genres',
         ]);
 
         if ($validator->fails())
@@ -102,7 +101,9 @@ class GenreController extends Controller
         //update it
         $genre->update($request->all());
         //return it
-        return $genre;
+        return response()->json([
+            "Genre is successfully updated!",
+            $genre]);
     }
 
     /**
