@@ -62,8 +62,9 @@ class GenreController extends Controller
      * @param  \App\Models\Genre  $genre
      * @return \Illuminate\Http\Response
      */
-    public function show(Genre $genre)
+    public function show($id)
     {
+        $genre = Genre::find($id);
         return new GenreResource($genre);
     }
 

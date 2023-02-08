@@ -23,11 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('musicians', MusicianController::class)->only(['index']);
-
+Route::get('musicians/{id}', [MusicianController::class, 'show']);
 
 Route::resource('genres', GenreController::class)->only(['index']);;
+Route::get('genres/{id}', [GenreController::class, 'show']);
+
 Route::resource('songs', SongController::class)->only(['index']);;
-Route::get('/songs/search/{name}', [TVShowController::class, 'search']);
+Route::get('songs/{id}', [SongController::class, 'show']);
+Route::get('/songs/search/{name}', [SongController::class, 'search']);
 
 Route::post('/register', [AuthController::class, 'register']);
 

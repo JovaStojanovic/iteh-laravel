@@ -72,8 +72,9 @@ class SongController extends Controller
      * @param  \App\Models\Song  $song
      * @return \Illuminate\Http\Response
      */
-    public function show(Song $song)
-    {
+    public function show($id)
+    {   
+        $song = Song::find($id);
         return new SongResource($song);
     }
 

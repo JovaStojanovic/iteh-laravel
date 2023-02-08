@@ -65,9 +65,10 @@ class MusicianController extends Controller
      * @param  \App\Models\Musician  $musician
      * @return \Illuminate\Http\Response
      */
-    public function show(Musician $musician)
+    public function show($id)
     {
-       return new MusicianResource($musician);
+        $musician = Musician::find($id);
+        return new MusicianResource($musician);
     }
 
     /**
