@@ -95,7 +95,7 @@ class MusicianController extends Controller
         $validator = Validator::make($request->all(), [
             "name" => 'required|string|max:255',
             "instrument"=>'required|string|max:40|',
-            "biography"=>'required|text|max:255|',
+            "biography"=>'required|string|max:255|',
             "date_of_birth"=>'required|string|max:15',
         ]);
 
