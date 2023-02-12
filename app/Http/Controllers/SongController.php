@@ -122,8 +122,14 @@ class SongController extends Controller
      */
     public function destroy($id)
     {
-        Song::destroy($id);
-        return response()->json('Song was deleted succesfully');
+        $s = Song::find($id);
+        if($s){
+            $s->delete();
+            return response()->json(["Song is deleted.", $s]);
+        }
+        else{
+            return response()->json(['Error!!!']);
+        }
     }
 
     public function search($name)

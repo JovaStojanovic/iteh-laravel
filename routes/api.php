@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource("genres", GenreController::class)->only(['store', 'update','destroy']);
 
     // Route::put("tvshows/{id}", [TVShowController::class, "update"]);
-    Route::resource("songs", SongController::class)->only(['store', 'update', 'show']);
+    Route::resource("songs", SongController::class)->only(['store', 'update', 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
